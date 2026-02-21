@@ -13,10 +13,10 @@
             --brand-brown: #4A3023;
             --card-bg: #F9EFEA; 
             --whatsapp: #25D366;
-            --text-dark: #1A0B08; /* Richer, darker text for brightness */
+            --text-dark: #1A0B08; 
             --text-muted: #4A3023;
             --accent-pink: #D81B60;
-            --bg-gradient: linear-gradient(135deg, #FFF4F1 0%, #FFF0F5 100%); /* Vibrant light background */
+            --bg-gradient: linear-gradient(135deg, #FFF4F1 0%, #FFF0F5 100%); 
         }
 
         * {
@@ -68,7 +68,9 @@
             color: var(--accent-pink); 
             transform: scale(1.1);
         }
+        
         .header-right { display: flex; gap: 18px; align-items: center; }
+        .header-right a { text-decoration: none; display: flex; align-items: center; }
 
         /* Logo styling for the header */
         .logo {
@@ -537,8 +539,10 @@
         </a>
 
         <div class="header-right">
-            <i class="fas fa-search" onclick="alert('Search Bar Opened!')"></i>
-            <i class="far fa-shopping-bag" onclick="alert('Your Shopping Bag is empty.')"></i>
+            <a href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" title="Follow us on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <i class="fas fa-shopping-bag" title="Shopping Bag" onclick="alert('Your Shopping Bag is empty.')"></i>
         </div>
     </header>
 
@@ -548,7 +552,7 @@
                 <div class="hero-logo-circle">
                     <img src="assets/logo.png" alt="AnushaLabel Logo">
                 </div>
-                <h1 class="hero-tagline">Wrap Yourself In The Charm Of Tradition With Our Outfits<br><br>Step in to Style - Step in to Comfort</h1>
+                <h1 class="hero-tagline">Drape Yourself in Timeless Elegance<br><br>Where Authentic Tradition Meets Contemporary Grace</h1>
                 <p class="hero-contact">6309889433 <span>|</span> www.anushalabel.com</p>
             </div>
             <div class="hero-image-side">
