@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnushaLabel | Vibrant Ethnic Wear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- Base & Variables --- */
@@ -13,24 +13,30 @@
             --brand-brown: #4A3023;
             --card-bg: #F9EFEA; 
             --whatsapp: #25D366;
-            --text-dark: #333;
-            --text-muted: #666;
+            --text-dark: #1A0B08; /* Richer, darker text for brightness */
+            --text-muted: #4A3023;
             --accent-pink: #D81B60;
+            --bg-gradient: linear-gradient(135deg, #FFF4F1 0%, #FFF0F5 100%); /* Vibrant light background */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            background-color: #ffffff;
+            background: var(--bg-gradient);
             color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+        }
+
+        /* Attractive Headings Font */
+        h1, h2, h3, h4, .product-title {
+            font-family: 'Playfair Display', serif;
         }
 
         /* --- Header --- */
@@ -44,21 +50,25 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0e6e6;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             transition: box-shadow 0.3s ease;
         }
         
-        header:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        header:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
 
         .header-left i, .header-right i {
-            font-size: 1.2rem;
-            color: #444;
+            font-size: 1.3rem;
+            color: var(--brand-brown);
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.2s ease;
         }
         
-        .header-left i:hover, .header-right i:hover { color: var(--accent-pink); }
-        .header-right { display: flex; gap: 15px; align-items: center; }
+        .header-left i:hover, .header-right i:hover { 
+            color: var(--accent-pink); 
+            transform: scale(1.1);
+        }
+        .header-right { display: flex; gap: 18px; align-items: center; }
 
         /* Logo styling for the header */
         .logo {
@@ -68,7 +78,7 @@
         }
         
         .logo img {
-            height: 45px; /* Adjust height to fit navbar */
+            height: 45px; 
             width: auto;
             display: block;
         }
@@ -76,10 +86,12 @@
         /* --- HERO BANNER --- */
         .hero-banner {
             background-color: var(--brand-brown);
+            background-image: linear-gradient(to right, #4A3023, #6B4232);
             display: flex;
             flex-direction: column; 
             padding: 30px 10px;
             color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .hero-text-side {
@@ -100,7 +112,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             overflow: hidden; 
         }
         
@@ -111,15 +123,16 @@
         }
 
         .hero-tagline {
-            font-size: 1.15rem;
-            font-weight: 400;
-            line-height: 1.6;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.5;
             margin-bottom: 15px;
             letter-spacing: 0.5px;
-            color: #f4f4f4;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        .hero-contact { font-size: 0.9rem; color: #ddd; }
+        .hero-contact { font-size: 0.95rem; color: #ffe6e6; font-weight: 300;}
         .hero-contact span { margin: 0 10px; opacity: 0.5; }
 
         .hero-image-side {
@@ -133,15 +146,14 @@
             object-fit: cover;
             border: 2px solid #fff;
             aspect-ratio: 1/2;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: zoom-in;
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
         
         .hero-image-side img:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #f0f0f0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
         }
 
         /* --- Section Titles --- */
@@ -150,16 +162,16 @@
             align-items: center;
             text-align: center;
             margin: 50px 20px 30px;
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: var(--text-dark);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brand-brown);
         }
 
         .section-header::before,
         .section-header::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 2px solid rgba(74, 48, 35, 0.15);
         }
         .section-header::before { margin-right: 20px; }
         .section-header::after { margin-left: 20px; }
@@ -182,19 +194,25 @@
             transition: transform 0.3s ease;
         }
         
-        .category-wrapper:hover { transform: translateY(-5px); }
+        .category-wrapper:hover { transform: translateY(-8px); }
 
         .category-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 10px;
+            background-color: #fff;
+            border-radius: 16px;
+            padding: 8px;
             width: 100%;
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .category-wrapper:hover .category-card {
+            border-color: var(--accent-pink);
         }
 
         .category-card img {
@@ -205,10 +223,11 @@
         }
 
         .category-wrapper p {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--brand-brown);
             text-align: center;
+            font-family: 'Playfair Display', serif;
         }
 
         /* --- PRODUCT GRID --- */
@@ -217,26 +236,31 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             padding: 0 15px;
+            margin-bottom: 20px;
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
-            background: #fff;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
         }
         
         .product-card:hover {
             transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            background: #fff;
         }
 
         .image-container {
             position: relative;
-            margin-bottom: 15px; 
-            border-radius: 8px;
-            overflow: hidden;
             cursor: zoom-in;
+            overflow: hidden;
         }
 
         .image-container img {
@@ -247,83 +271,94 @@
             transition: transform 0.6s ease;
         }
         
-        .product-card:hover .image-container img { transform: scale(1.05); }
+        .product-card:hover .image-container img { transform: scale(1.08); }
 
         /* Badges */
         .badge-new {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #689F38;
+            background-color: #D81B60;
             color: white;
             font-size: 0.7rem;
             font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 5px 10px;
+            border-radius: 20px;
             z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .badge-heart {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #fff;
-            width: 32px;
-            height: 32px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999;
-            font-size: 0.9rem;
+            font-size: 1rem;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             z-index: 2;
-            transition: transform 0.2s ease, color 0.2s ease;
+            transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
         }
         
-        .badge-heart:hover { transform: scale(1.15); color: var(--accent-pink); }
-
-        .btn-action {
-            position: absolute;
-            bottom: -15px;
-            right: 15px;
+        .badge-heart:hover { 
+            transform: scale(1.15); 
+            color: var(--accent-pink); 
             background: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--whatsapp);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-decoration: none;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .btn-action:hover {
-            transform: translateY(-5px) scale(1.1);
-            background: var(--whatsapp);
-            color: #fff;
-            border-color: var(--whatsapp);
         }
 
-        .product-info { padding: 0 5px; }
+        .product-info { 
+            padding: 15px 10px; 
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
 
         .product-title {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 4px;
-        }
-
-        .product-price {
             font-size: 1.1rem;
             color: var(--text-dark);
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        /* Improved WhatsApp Button positioned below the title */
+        .whatsapp-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--whatsapp);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 220px;
+        }
+        
+        .whatsapp-action-btn i {
+            font-size: 1.2rem;
+        }
+
+        .whatsapp-action-btn:hover {
+            transform: translateY(-3px);
+            background: #1ebe5d;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
         }
 
         /* --- Buttons --- */
@@ -331,27 +366,30 @@
         
         .btn-outline {
             display: inline-block;
-            padding: 10px 30px;
-            border: 1px solid var(--text-muted);
-            color: var(--text-dark);
+            padding: 12px 35px;
+            border: 2px solid var(--brand-brown);
+            color: var(--brand-brown);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 600;
             border-radius: 50px;
             transition: all 0.3s ease;
+            background: transparent;
         }
         
         .btn-outline:hover {
             background-color: var(--brand-brown);
             color: #fff;
-            border-color: var(--brand-brown);
+            box-shadow: 0 8px 20px rgba(74, 48, 35, 0.2);
+            transform: translateY(-3px);
         }
 
         /* --- Footer --- */
         footer {
             padding: 50px 20px 20px;
-            border-top: 1px solid #eee;
-            margin-top: 40px;
-            background: #fafafa;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-top: 50px;
+            background: #fff;
         }
 
         .footer-grid {
@@ -360,34 +398,55 @@
             gap: 30px;
         }
 
-        .footer-col h4 { font-size: 1.05rem; margin-bottom: 15px; font-weight: 500; }
+        .footer-col h4 { 
+            font-size: 1.2rem; 
+            margin-bottom: 18px; 
+            font-weight: 700; 
+            color: var(--brand-brown);
+        }
         .footer-col p, .footer-col a { 
-            font-size: 0.9rem; 
+            font-size: 0.95rem; 
             color: var(--text-muted); 
             text-decoration: none; 
             display: block; 
-            margin-bottom: 10px; 
-            transition: color 0.2s ease;
+            margin-bottom: 12px; 
+            transition: color 0.2s ease, padding-left 0.3s ease;
         }
         
-        .footer-col a:hover { color: var(--accent-pink); }
+        .footer-col a:hover { 
+            color: var(--accent-pink); 
+            padding-left: 5px;
+            font-weight: 500;
+        }
         
         .social-icons { display: flex; gap: 15px; margin-top: 20px; }
         .social-icons i { 
-            color: var(--text-muted); 
-            font-size: 1.2rem; 
+            color: #fff; 
+            background: var(--brand-brown);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.1rem; 
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .social-icons i:hover { color: var(--accent-pink); transform: translateY(-3px); }
+        .social-icons i:hover { 
+            background: var(--accent-pink); 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
 
         .footer-bottom {
             text-align: center;
             margin-top: 40px;
             padding-top: 20px;
             border-top: 1px solid #eee;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* --- LIGHTBOX (Image Expansion) STYLES --- */
@@ -452,7 +511,7 @@
             }
             .hero-text-side { flex: 1.5; text-align: left; align-items: flex-start; padding-left: 0;}
             .hero-image-side { flex: 1; padding: 0; }
-            .hero-tagline { font-size: 1.6rem; }
+            .hero-tagline { font-size: 1.9rem; }
             
             .category-wrapper { width: calc(100% / 3 - 20px); max-width: 200px; }
             
@@ -471,15 +530,15 @@
     </div>
 
     <header>
-        <div class="header-left"><i class="fas fa-bars"></i></div>
+        <div class="header-left" onclick="alert('Menu Options Opened!')"><i class="fas fa-bars"></i></div>
         
-        <a href="#" class="logo">
+        <a href="#" class="logo" onclick="window.scrollTo(0,0); return false;">
             <img src="assets/banner.png" alt="AnushaLabel Logo">
         </a>
 
         <div class="header-right">
-            <i class="fas fa-search"></i>
-            <i class="far fa-shopping-bag"></i>
+            <i class="fas fa-search" onclick="alert('Search Bar Opened!')"></i>
+            <i class="far fa-shopping-bag" onclick="alert('Your Shopping Bag is empty.')"></i>
         </div>
     </header>
 
@@ -501,19 +560,19 @@
 
         <h2 class="section-header">Shop By Category</h2>
         <div class="categories-row">
-            <div class="category-wrapper">
+            <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
                     <img src="assets/product1.jpg.png" alt="Pattu">
                 </div>
                 <p>Pattu</p>
             </div>
-            <div class="category-wrapper">
+            <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
                     <img src="assets/product2.jpg.png" alt="Cotton">
                 </div>
                 <p>Cotton</p>
             </div>
-            <div class="category-wrapper">
+            <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
                     <img src="assets/product3.jpg.png" alt="Fancy">
                 </div>
@@ -521,18 +580,19 @@
             </div>
         </div>
 
-        <h2 class="section-header">Latest Arrivals</h2>
+        <h2 class="section-header" id="latest-arrivals">Latest Arrivals</h2>
         <div class="product-grid">
             <div class="product-card">
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product4.jpg.png" alt="Traditional Green Silk Saree" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL560" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product4.jpg.png" alt="Green Kanjivaram Silk Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">Traditional Green Silk Saree</p>
-                    <p class="product-price">₹ 00000</p>
+                    <p class="product-title">Green Kanjivaram Silk Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Green%20Kanjivaram%20Silk%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -540,12 +600,13 @@
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product5.jpg.png" alt="Pink Kurta" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL559" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product5.jpg.png" alt="Soft Pink Linen Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL559 Pink Kota</p>
-                    <p class="product-price">₹1,745</p>
+                    <p class="product-title">Soft Pink Linen Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Soft%20Pink%20Linen%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -553,85 +614,91 @@
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/cotton.jpg.png" alt="Blue Floral" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL558" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/cotton.jpg.png" alt="White & Blue Block Print Cotton Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL558 Blue Floral</p>
-                    <p class="product-price">₹1,745</p>
+                    <p class="product-title">White & Blue Block Print Cotton Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20White%20%26%20Blue%20Block%20Print%20Cotton%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/fancy.jpg.png" alt="Purple Co-Ord" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL556" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/fancy.jpg.png" alt="Peach Sequin Partywear Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL556 Purple Co-Ord</p>
-                    <p class="product-price">₹1,099</p>
+                    <p class="product-title">Peach Sequin Partywear Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Peach%20Sequin%20Partywear%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
 
         <div class="btn-container">
-            <a href="#" class="btn-outline">View More</a>
+            <a href="#best-sellers" class="btn-outline">View More</a>
         </div>
 
-        <h2 class="section-header">Best Selling Products</h2>
+        <h2 class="section-header" id="best-sellers">Best Selling Products</h2>
         <div class="product-grid">
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80" alt="Raw Silk" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL515" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/silk.jpg.png" alt="Royal Blue Banarasi Silk Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL515 Raw Silk</p>
-                    <p class="product-price">₹1,295</p>
+                    <p class="product-title">Royal Blue Banarasi Silk Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Royal%20Blue%20Banarasi%20Silk%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1583391733958-656f5150e7b2?auto=format&fit=crop&w=400&q=80" alt="Red Kurta" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL503" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product3.jpg.png" alt="Ruby Red Georgette Sequin Saree" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL503 Kurta Set</p>
-                    <p class="product-price">₹1,095</p>
+                    <p class="product-title">Ruby Red Georgette Sequin Saree</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Ruby%20Red%20Georgette%20Sequin%20Saree" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d615ef?auto=format&fit=crop&w=400&q=80" alt="Blue Suit" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL543" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product1.jpg.png" alt="Navy Blue Silk Saree with Gold Zari" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL543 Blue Suit</p>
-                    <p class="product-price">₹1,495</p>
+                    <p class="product-title">Navy Blue Silk Saree with Gold Zari</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Navy%20Blue%20Silk%20Saree%20with%20Gold%20Zari" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=400&q=80" alt="Green Dress" class="expandable">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL535" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product2.jpg.png" alt="Cream Cotton Saree with Leaf Motifs" class="expandable">
                 </div>
                 <div class="product-info">
-                    <p class="product-title">AL535 Green Dress</p>
-                    <p class="product-price">₹995</p>
+                    <p class="product-title">Cream Cotton Saree with Leaf Motifs</p>
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Cream%20Cotton%20Saree%20with%20Leaf%20Motifs" target="_blank" class="whatsapp-action-btn">
+                        <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
 
         <div class="btn-container">
-            <a href="#" class="btn-outline">View All Best Sellers</a>
+            <a href="#" class="btn-outline" onclick="alert('Loading more exclusive Best Sellers soon!'); return false;">View All Best Sellers</a>
         </div>
     </main>
 
@@ -643,31 +710,31 @@
                 <p>6309889433</p>
                 <p>contact@anushalabel.com</p>
                 <div class="social-icons">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-youtube"></i>
-                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-facebook-f" onclick="alert('Redirecting to Facebook')"></i>
+                    <i class="fab fa-instagram" onclick="alert('Redirecting to Instagram')"></i>
+                    <i class="fab fa-youtube" onclick="alert('Redirecting to YouTube')"></i>
+                    <i class="fab fa-whatsapp" onclick="window.open('https://wa.me/918985175287', '_blank')"></i>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Categories</h4>
-                <a href="#">Pattu (Silk)</a>
-                <a href="#">Cotton</a>
-                <a href="#">Fancy</a>
+                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Pattu (Silk)</a>
+                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Cotton</a>
+                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Fancy</a>
             </div>
             <div class="footer-col">
                 <h4>Useful Links</h4>
-                <a href="#">Home</a>
-                <a href="#">My account</a>
-                <a href="#">Order Tracking</a>
-                <a href="#">Contact Us</a>
+                <a href="#" onclick="window.scrollTo(0,0); return false;">Home</a>
+                <a href="#" onclick="alert('Please login to view your account.'); return false;">My account</a>
+                <a href="#" onclick="alert('Order Tracking page coming soon!'); return false;">Order Tracking</a>
+                <a href="#" onclick="alert('Please contact us via WhatsApp: 6309889433'); return false;">Contact Us</a>
             </div>
             <div class="footer-col">
                 <h4>Help & Policies</h4>
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Shipping Policy</a>
-                <a href="#">Returns & Refunds</a>
+                <a href="#" onclick="alert('Terms & Conditions loaded.'); return false;">Terms & Conditions</a>
+                <a href="#" onclick="alert('Privacy Policy loaded.'); return false;">Privacy Policy</a>
+                <a href="#" onclick="alert('Shipping Policy: We deliver across India within 5-7 business days.'); return false;">Shipping Policy</a>
+                <a href="#" onclick="alert('Returns & Refunds Policy loaded.'); return false;">Returns & Refunds</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -679,7 +746,7 @@
         // Interactive Heart Logic
         document.querySelectorAll('.badge-heart').forEach(heart => {
             heart.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevents page jumping if clicked
+                e.preventDefault(); 
                 const icon = this.querySelector('i');
                 if(icon.classList.contains('far')) {
                     icon.classList.replace('far', 'fas');
@@ -696,38 +763,32 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.querySelector('.lightbox-close');
 
-        // Target all images with the 'expandable' class
         const expandableImages = document.querySelectorAll('.expandable');
 
         expandableImages.forEach(img => {
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src; // Pass clicked image source to lightbox
-                lightbox.classList.add('active'); // Show lightbox
-                document.body.style.overflow = 'hidden'; // Stop background scrolling
+                lightboxImg.src = img.src; 
+                lightbox.classList.add('active'); 
+                document.body.style.overflow = 'hidden'; 
             });
         });
 
-        // Function to close the lightbox
         function closeLightbox() {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore background scrolling
-            // Clear source after animation to prevent flashing next time
+            document.body.style.overflow = 'auto'; 
             setTimeout(() => {
                 if(!lightbox.classList.contains('active')) lightboxImg.src = '';
             }, 300); 
         }
 
-        // Close on 'X' click
         closeBtn.addEventListener('click', closeLightbox);
 
-        // Close on background click
         lightbox.addEventListener('click', (e) => {
             if (e.target !== lightboxImg) {
                 closeLightbox();
             }
         });
 
-        // Close on 'Escape' key press
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
