@@ -10,11 +10,12 @@
     <style>
         /* --- Base & Variables --- */
         :root {
-            --brand-brown: #4A3023; /* Rich brown from your desktop image */
-            --card-bg: #F9EFEA; /* Light beige for category cards */
+            --brand-brown: #4A3023;
+            --card-bg: #F9EFEA; 
             --whatsapp: #25D366;
             --text-dark: #333;
             --text-muted: #666;
+            --accent-pink: #D81B60;
         }
 
         * {
@@ -24,9 +25,12 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             background-color: #ffffff;
             color: var(--text-dark);
+            overflow-x: hidden;
         }
 
         /* --- Header --- */
@@ -35,35 +39,46 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #eee;
+            transition: box-shadow 0.3s ease;
         }
+        
+        header:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
         .header-left i, .header-right i {
             font-size: 1.2rem;
             color: #444;
             cursor: pointer;
+            transition: color 0.3s ease;
         }
         
-        .header-right { display: flex; gap: 15px; }
+        .header-left i:hover, .header-right i:hover { color: var(--accent-pink); }
+        .header-right { display: flex; gap: 15px; align-items: center; }
 
+        /* Logo styling for the header */
         .logo {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
-        .logo span { color: #D81B60; } /* Retaining vibrant touch */
+        
+        .logo img {
+            height: 45px; /* Adjust height to fit navbar */
+            width: auto;
+            display: block;
+        }
 
-        /* --- HERO BANNER (Matches Desktop Image) --- */
+        /* --- HERO BANNER --- */
         .hero-banner {
             background-color: var(--brand-brown);
             display: flex;
-            flex-direction: column; /* Mobile by default */
-            padding: 20px 10px;
+            flex-direction: column; 
+            padding: 30px 10px;
             color: #fff;
         }
 
@@ -77,24 +92,26 @@
         }
 
         .hero-logo-circle {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: #fff;
-            color: var(--brand-brown);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
             margin-bottom: 20px;
-            text-align: center;
-            line-height: 1.1;
-            padding: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden; 
+        }
+        
+        .hero-logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
         }
 
         .hero-tagline {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 400;
             line-height: 1.6;
             margin-bottom: 15px;
@@ -102,16 +119,12 @@
             color: #f4f4f4;
         }
 
-        .hero-contact {
-            font-size: 0.9rem;
-            color: #ddd;
-        }
-
+        .hero-contact { font-size: 0.9rem; color: #ddd; }
         .hero-contact span { margin: 0 10px; opacity: 0.5; }
 
         .hero-image-side {
             display: flex;
-            gap: 5px;
+            gap: 10px;
             padding: 10px;
         }
 
@@ -120,6 +133,15 @@
             object-fit: cover;
             border: 2px solid #fff;
             aspect-ratio: 1/2;
+            border-radius: 4px;
+            cursor: zoom-in;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .hero-image-side img:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #f0f0f0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* --- Section Titles --- */
@@ -127,9 +149,9 @@
             display: flex;
             align-items: center;
             text-align: center;
-            margin: 40px 20px 20px;
-            font-size: 1.2rem;
-            font-weight: 400;
+            margin: 50px 20px 30px;
+            font-size: 1.3rem;
+            font-weight: 500;
             color: var(--text-dark);
         }
 
@@ -142,7 +164,7 @@
         .section-header::before { margin-right: 20px; }
         .section-header::after { margin-left: 20px; }
 
-        /* --- CATEGORIES (With beige backgrounds from image) --- */
+        /* --- CATEGORIES --- */
         .categories-row {
             display: flex;
             justify-content: center;
@@ -156,18 +178,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
+        
+        .category-wrapper:hover { transform: translateY(-5px); }
 
         .category-card {
-            background-color: var(--card-bg); /* The beige box */
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             padding: 10px;
             width: 100%;
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .category-card img {
@@ -178,166 +205,278 @@
         }
 
         .category-wrapper p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
             text-align: center;
         }
 
         /* --- PRODUCT GRID --- */
         .product-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             padding: 0 15px;
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
         }
 
         .image-container {
             position: relative;
-            margin-bottom: 15px; /* Extra space for the overlapping button */
+            margin-bottom: 15px; 
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: zoom-in;
         }
 
         .image-container img {
             width: 100%;
-            height: 260px;
+            height: 280px;
             object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
         }
+        
+        .product-card:hover .image-container img { transform: scale(1.05); }
 
         /* Badges */
         .badge-new {
             position: absolute;
-            top: 8px;
-            left: 8px;
-            background-color: #689F38; /* Green from video */
+            top: 10px;
+            left: 10px;
+            background-color: #689F38;
             color: white;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 2px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 2;
         }
 
         .badge-heart {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 10px;
             background: #fff;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 2;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
+        
+        .badge-heart:hover { transform: scale(1.15); color: var(--accent-pink); }
 
-        /* Overlapping Action Button (Styled like your video's red +, but used for WA) */
         .btn-action {
             position: absolute;
             bottom: -15px;
-            right: 12px;
+            right: 15px;
             background: #fff;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: var(--whatsapp); /* Green WhatsApp icon */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            font-size: 1.3rem;
+            color: var(--whatsapp);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             text-decoration: none;
             border: 1px solid #eee;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            z-index: 10;
         }
         
-        .btn-action:hover { transform: scale(1.1); }
+        .btn-action:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--whatsapp);
+            color: #fff;
+            border-color: var(--whatsapp);
+        }
 
         .product-info { padding: 0 5px; }
 
         .product-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             font-weight: 400;
             margin-bottom: 4px;
         }
 
         .product-price {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-dark);
             font-weight: 600;
         }
 
         /* --- Buttons --- */
-        .btn-container { text-align: center; margin: 30px 0 10px; }
+        .btn-container { text-align: center; margin: 40px 0 20px; }
         
         .btn-outline {
             display: inline-block;
-            padding: 8px 25px;
+            padding: 10px 30px;
             border: 1px solid var(--text-muted);
             color: var(--text-dark);
             text-decoration: none;
-            font-size: 0.9rem;
-            border-radius: 4px;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--brand-brown);
+            color: #fff;
+            border-color: var(--brand-brown);
         }
 
         /* --- Footer --- */
         footer {
-            padding: 40px 20px 20px;
+            padding: 50px 20px 20px;
             border-top: 1px solid #eee;
             margin-top: 40px;
-            background: #fff;
+            background: #fafafa;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
-        .footer-col h4 { font-size: 0.95rem; margin-bottom: 12px; font-weight: 500; }
-        .footer-col p, .footer-col a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 8px; }
+        .footer-col h4 { font-size: 1.05rem; margin-bottom: 15px; font-weight: 500; }
+        .footer-col p, .footer-col a { 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 10px; 
+            transition: color 0.2s ease;
+        }
         
-        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icons i { color: var(--text-muted); font-size: 1.1rem; }
+        .footer-col a:hover { color: var(--accent-pink); }
+        
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icons i { 
+            color: var(--text-muted); 
+            font-size: 1.2rem; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .social-icons i:hover { color: var(--accent-pink); transform: translateY(-3px); }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid #eee;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        /* --- LIGHTBOX (Image Expansion) STYLES --- */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            object-fit: contain;
+        }
+
+        #lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent-pink);
+            transform: scale(1.1);
         }
 
         /* --- DESKTOP RESPONSIVE SETTINGS --- */
         @media (min-width: 768px) {
             .hero-banner {
                 flex-direction: row;
-                padding: 40px 5%;
+                padding: 50px 8%;
+                align-items: center;
             }
-            .hero-text-side { flex: 1.5; text-align: left; align-items: flex-start; }
+            .hero-text-side { flex: 1.5; text-align: left; align-items: flex-start; padding-left: 0;}
             .hero-image-side { flex: 1; padding: 0; }
+            .hero-tagline { font-size: 1.6rem; }
             
             .category-wrapper { width: calc(100% / 3 - 20px); max-width: 200px; }
             
-            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 0 5%; }
-            .section-header { margin: 60px 5% 30px; }
+            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 0 5%; }
+            .section-header { margin: 70px 5% 40px; }
             .footer-grid { grid-template-columns: repeat(4, 1fr); padding: 0 5%; }
+            .image-container img { height: 320px; }
         }
     </style>
 </head>
 <body>
 
+    <div id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Expanded Image">
+    </div>
+
     <header>
         <div class="header-left"><i class="fas fa-bars"></i></div>
-        <a href="#" class="logo">Anusha<span>Label</span></a>
+        
+        <a href="#" class="logo">
+            <img src="assets/banner.png" alt="AnushaLabel Logo">
+        </a>
+
         <div class="header-right">
             <i class="fas fa-search"></i>
             <i class="far fa-shopping-bag"></i>
@@ -347,14 +486,16 @@
     <main>
         <section class="hero-banner">
             <div class="hero-text-side">
-                <div class="hero-logo-circle">A<br>Label</div>
+                <div class="hero-logo-circle">
+                    <img src="assets/logo.png" alt="AnushaLabel Logo">
+                </div>
                 <h1 class="hero-tagline">Wrap Yourself In The Charm Of Tradition With Our Outfits<br><br>Step in to Style - Step in to Comfort</h1>
                 <p class="hero-contact">6309889433 <span>|</span> www.anushalabel.com</p>
             </div>
             <div class="hero-image-side">
-                <img src="assets\silk.jpg.png" alt="Model 1">
-                <img src="assets\cotton.jpg.png" alt="Model 2">
-                <img src="assets\fancy.jpg.png" alt="Model 3">
+                <img src="assets/silk.jpg.png" alt="Model 1" class="expandable">
+                <img src="assets/cotton.jpg.png" alt="Model 2" class="expandable">
+                <img src="assets/fancy.jpg.png" alt="Model 3" class="expandable">
             </div>
         </section>
 
@@ -362,19 +503,19 @@
         <div class="categories-row">
             <div class="category-wrapper">
                 <div class="category-card">
-                    <img src="assets\product1.jpg.png" alt="Pattu">
+                    <img src="assets/product1.jpg.png" alt="Pattu">
                 </div>
                 <p>Pattu</p>
             </div>
             <div class="category-wrapper">
                 <div class="category-card">
-                    <img src="assets\product2.jpg.png" alt="Cotton">
+                    <img src="assets/product2.jpg.png" alt="Cotton">
                 </div>
                 <p>Cotton</p>
             </div>
             <div class="category-wrapper">
                 <div class="category-card">
-                    <img src="assets\product3.jpg.png" alt="Fancy">
+                    <img src="assets/product3.jpg.png" alt="Fancy">
                 </div>
                 <p>Fancy</p>
             </div>
@@ -386,8 +527,8 @@
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets\product4.jpg.png" alt="Traditional Green Silk Saree">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL560" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product4.jpg.png" alt="Traditional Green Silk Saree" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL560" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">Traditional Green Silk Saree</p>
@@ -399,8 +540,8 @@
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets\product5.jpg.png" alt="Pink Kurta">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/product5.jpg.png" alt="Pink Kurta" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL559" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL559 Pink Kota</p>
@@ -412,8 +553,8 @@
                 <div class="image-container">
                     <span class="badge-new">NEW</span>
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets\cotton.jpg.png" alt="Blue Kurta">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL558" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/cotton.jpg.png" alt="Blue Floral" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL558" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL558 Blue Floral</p>
@@ -424,8 +565,8 @@
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets\fancy.jpg.png" alt="Purple Co-Ord">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL556" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="assets/fancy.jpg.png" alt="Purple Co-Ord" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL556" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL556 Purple Co-Ord</p>
@@ -443,8 +584,8 @@
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80" alt="Raw Silk">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL515" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80" alt="Raw Silk" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL515" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL515 Raw Silk</p>
@@ -455,8 +596,8 @@
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1583391733958-656f5150e7b2?auto=format&fit=crop&w=400&q=80" alt="Red Kurta">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL503" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="https://images.unsplash.com/photo-1583391733958-656f5150e7b2?auto=format&fit=crop&w=400&q=80" alt="Red Kurta" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL503" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL503 Kurta Set</p>
@@ -467,8 +608,8 @@
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d615ef?auto=format&fit=crop&w=400&q=80" alt="Blue Suit">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL543" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d615ef?auto=format&fit=crop&w=400&q=80" alt="Blue Suit" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL543" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL543 Blue Suit</p>
@@ -479,8 +620,8 @@
             <div class="product-card">
                 <div class="image-container">
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=400&q=80" alt="Green Dress">
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"buying%20this%20saree"AL535" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
+                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=400&q=80" alt="Green Dress" class="expandable">
+                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20this%20saree%20AL535" target="_blank" class="btn-action"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 <div class="product-info">
                     <p class="product-title">AL535 Green Dress</p>
@@ -535,8 +676,10 @@
     </footer>
 
     <script>
+        // Interactive Heart Logic
         document.querySelectorAll('.badge-heart').forEach(heart => {
-            heart.addEventListener('click', function() {
+            heart.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevents page jumping if clicked
                 const icon = this.querySelector('i');
                 if(icon.classList.contains('far')) {
                     icon.classList.replace('far', 'fas');
@@ -546,6 +689,49 @@
                     icon.style.color = '#999';
                 }
             });
+        });
+
+        // --- Lightbox Image Expansion Logic ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        // Target all images with the 'expandable' class
+        const expandableImages = document.querySelectorAll('.expandable');
+
+        expandableImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src; // Pass clicked image source to lightbox
+                lightbox.classList.add('active'); // Show lightbox
+                document.body.style.overflow = 'hidden'; // Stop background scrolling
+            });
+        });
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+            // Clear source after animation to prevent flashing next time
+            setTimeout(() => {
+                if(!lightbox.classList.contains('active')) lightboxImg.src = '';
+            }, 300); 
+        }
+
+        // Close on 'X' click
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+
+        // Close on 'Escape' key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
