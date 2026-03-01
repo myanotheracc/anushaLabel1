@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AnushaLabel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #f4f6f9;">
+
+    <header>
+        <a href="index.html" class="logo"><img src="assets/banner.png" alt="AnushaLabel"></a>
+        <h3 style="color: var(--brand-brown); font-family: 'Poppins', sans-serif;">Admin Portal</h3>
+    </header>
+
+    <div class="admin-login-box" id="auth-section">
+        <h2 style="margin-bottom: 20px;">Admin Login</h2>
+        <div class="form-group">
+            <input type="password" id="admin-password" placeholder="Enter Admin Password (admin123)">
+        </div>
+        <button class="btn-primary" style="width: 100%;" onclick="checkAuth()">Login</button>
+    </div>
+
+    <div class="admin-wrapper" id="dashboard-section" style="display: none;">
+        <div class="admin-layout">
+            
+            <div class="admin-panel">
+                <h2 id="form-title">Add / Modify items</h2>
+                <form id="product-form">
+                    <input type="hidden" id="edit-id" value="">
+                    
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="p-category" required>
+                            <option value="pattu">Pattu</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="fancy">Fancy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Saree Title (Name)</label>
+                        <input type="text" id="p-name" placeholder="e.g. Green Kanjivaram Silk" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="text" id="p-color" placeholder="e.g. Green & Gold" required>
+                        </div>
+                       
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Photos (Select multiple)</label>
+                        <input type="file" id="p-photos" accept="image/*" multiple onchange="previewImages()">
+                        <div class="preview-area" id="image-preview"></div>
+                        <small style="color:gray; margin-top:5px;">Note: Uploading new photos during modify will replace existing ones.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Instagram Reel Links (Comma separated URLs)</label>
+                        <textarea id="p-ig" rows="2" placeholder="https://www.instagram.com/reel/..., https://..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="submit-btn">Upload Saree</button>
+                    <button type="button" class="btn-primary" id="cancel-btn" style="background:#666; display:none;" onclick="cancelEdit()">Cancel Edit</button>
+                </form>
+            </div>
+
+            <div class="admin-panel">
+                <h2>Manage Existing products</h2>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category & Color</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
