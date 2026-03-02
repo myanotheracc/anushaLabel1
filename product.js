@@ -18,7 +18,7 @@ async function loadProductDetails() {
     document.getElementById('p-name').innerText = data.name;
     document.getElementById('p-type').innerText = data.type;
     document.getElementById('p-color').innerText = data.color || 'N/A';
-    document.getElementById('p-desc').innerText = data.description || '';
+   document.getElementById('p-desc').innerHTML = (data.description || '').replace(/\n/g, '<br>');
     document.getElementById('whatsapp-link').href = `https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(data.name)}`;
 
     const track = document.getElementById('slider-track');
