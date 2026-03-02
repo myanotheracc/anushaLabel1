@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AnushaLabel</title>
+    
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+</head>
+<body style="background: #f4f4f9; padding-bottom: 50px;">
+    
+    <div class="admin-wrapper" style="max-width: 800px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px;">
+            <h1 style="color: var(--brand-brown); margin: 0; font-family: 'Playfair Display';">Admin Panel</h1>
+            <button id="logout-btn" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Poppins';">Logout</button>
+        </div>
+
+        <div class="admin-tabs" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+            <button class="tab-btn active" data-target="add-product">Add new product</button>
+            <button class="tab-btn" data-target="modify-product">Modify existing product</button>
+            <button class="tab-btn" data-target="add-ig">Add instagram links</button>
+        </div>
+
+        <div id="add-product" class="admin-section active">
+            <h3 id="form-title" style="margin-bottom: 15px; font-family: 'Playfair Display';">Add New Product</h3>
+            <input type="hidden" id="edit-id">
+            
+            <div class="form-group" style="margin-bottom: 15px;">
+                <select id="saree-type" class="admin-input" style="max-width: 300px; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                    <option value="" disabled selected>Saree Type</option>
+                    <option value="Pattu">Pattu</option>
+                    <option value="Cotton">Cotton</option>
+                    <option value="Fancy">Fancy</option>
+                </select>
+            </div>
+            
+            <div class="form-row" style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <div style="flex: 1;"><input type="text" id="saree-name" class="admin-input" placeholder="Saree Name" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></div>
+                <div style="flex: 1;"><input type="text" id="saree-color" class="admin-input" placeholder="Saree Colour" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 15px;">
+                <textarea id="saree-desc" class="admin-input" rows="4" placeholder="Description (optional)" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+            </div>
+            
+            <div class="form-group" style="border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <label style="font-weight: 500; display: block; margin-bottom: 10px;">Photos (can add multiple images)</label>
+                <div class="image-upload-area" id="image-preview-container" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="add-img-box" id="upload-widget-btn" style="width: 100px; height: 100px; border: 2px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #ccc; cursor: pointer;">+</div>
+                </div>
+            </div>
+            <button id="save-product-btn" class="submit-btn" style="background: var(--whatsapp); color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; width: 100%;">Save Product</button>
+        </div>
+
+        <div id="modify-product" class="admin-section" style="display: none;">
+            <h3 style="margin-bottom: 15px; font-family: 'Playfair Display';">Select the product to modify</h3>
+            <div id="product-list-container">
+                </div>
+        </div>
+
+        <div id="add-ig" class="admin-section" style="display: none;">
+            <h3 style="margin-bottom: 15px; font-family: 'Playfair Display';">Add Instagram Link</h3>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <input type="text" id="ig-desc" class="admin-input" placeholder="Description" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <input type="text" id="ig-link" class="admin-input" placeholder="Instagram Video Link" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <button id="post-ig-btn" class="submit-btn" style="background: var(--accent-pink); color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">Post</button>
+                <button id="toggle-ig-list-btn" class="submit-btn" style="background: transparent; border: 1px solid #333; color: #333; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Delete existing links</button>
+            </div>
+            
+            <div id="ig-list-container" style="display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h4 style="margin-bottom: 10px;">Existing Links</h4>
+                <div id="ig-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>

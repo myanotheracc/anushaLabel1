@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnushaLabel | Vibrant Ethnic Wear</title>
+    
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -17,17 +21,24 @@
     </div>
 
     <header>
-        <div class="header-left" onclick="alert('Menu Options Opened!')"><i class="fas fa-bars"></i></div>
+        <div class="header-left" style="position: relative;">
+            <i class="fas fa-bars" onclick="toggleAdminMenu(event)" style="cursor: pointer; padding: 10px; font-size: 1.5rem;"></i>
+            
+            <div id="admin-dropdown" style="display: none; position: absolute; top: 50px; left: 10px; background: #fff; border: 1px solid #eee; padding: 10px 0; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); min-width: 160px; z-index: 99999;">
+                <a href="admin-login.html" style="display: block; padding: 12px 20px; color: #4A3023; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">
+                    <i class="fas fa-user-shield" style="margin-right: 8px;"></i> Admin Login
+                </a>
+            </div>
+        </div>
         
         <a href="#" class="logo" onclick="window.scrollTo(0,0); return false;">
             <img src="assets/banner.png" alt="AnushaLabel Logo">
         </a>
 
         <div class="header-right">
-            <a href="https://www.instagram.com/anushalabel?igsh=NDV6YWMzczFqcnBr" target="_blank" title="Follow us on Instagram">
+            <a href="https://www.instagram.com/anushalabel" target="_blank" title="Follow us on Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-            <i class="fas fa-shopping-bag" title="Shopping Bag" onclick="alert('Your Shopping Bag is empty.')"></i>
         </div>
     </header>
 
@@ -41,9 +52,9 @@
                 <p class="hero-contact">6309889433 <span>|</span> www.anushalabel.com</p>
             </div>
             <div class="hero-image-side">
-                <img src="assets/silk.jpg.png" alt="Model 1" class="expandable">
-                <img src="assets/cotton.jpg.png" alt="Model 2" class="expandable">
-                <img src="assets/fancy.jpg.png" alt="Model 3" class="expandable">
+                <img src="assets/silk.jpg.png" alt="Model 1">
+                <img src="assets/cotton.jpg.png" alt="Model 2">
+                <img src="assets/fancy.jpg.png" alt="Model 3">
             </div>
         </section>
 
@@ -51,158 +62,36 @@
         <div class="categories-row">
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
-                    <img src="assets/product1.jpg.png" alt="Pattu">
+                    <img src="assets/silk.jpg.png" alt="Pattu">
                 </div>
                 <p>Pattu</p>
             </div>
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
-                    <img src="assets/product2.jpg.png" alt="Cotton">
+                    <img src="assets/cotton.jpg.png" alt="Cotton">
                 </div>
                 <p>Cotton</p>
             </div>
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
                 <div class="category-card">
-                    <img src="assets/product3.jpg.png" alt="Fancy">
+                    <img src="assets/fancy.jpg.png" alt="Fancy">
                 </div>
                 <p>Fancy</p>
             </div>
         </div>
 
         <h2 class="section-header" id="latest-arrivals">Latest Arrivals</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="image-container">
-                    <span class="badge-new">NEW</span>
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product4.jpg.png" alt="Green Kanjivaram Silk Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Green Kanjivaram Silk Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Green%20Kanjivaram%20Silk%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
+        
+        <div class="product-grid" id="products-container">
             </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <span class="badge-new">NEW</span>
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product5.jpg.png" alt="Soft Pink Linen Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Soft Pink Linen Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Soft%20Pink%20Linen%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <span class="badge-new">NEW</span>
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/cotton.jpg.png" alt="White & Blue Block Print Cotton Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">White & Blue Block Print Cotton Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20White%20%26%20Blue%20Block%20Print%20Cotton%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/fancy.jpg.png" alt="Peach Sequin Partywear Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Peach Sequin Partywear Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Peach%20Sequin%20Partywear%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-        </div>
 
         <div class="btn-container">
-            <a href="#best-sellers" class="btn-outline">View More</a>
-        </div>
-
-        <h2 class="section-header" id="best-sellers">Best Selling Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="image-container">
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/silk.jpg.png" alt="Royal Blue Banarasi Silk Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Royal Blue Banarasi Silk Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Royal%20Blue%20Banarasi%20Silk%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product3.jpg.png" alt="Ruby Red Georgette Sequin Saree" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Ruby Red Georgette Sequin Saree</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Ruby%20Red%20Georgette%20Sequin%20Saree" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product1.jpg.png" alt="Navy Blue Silk Saree with Gold Zari" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Navy Blue Silk Saree with Gold Zari</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Navy%20Blue%20Silk%20Saree%20with%20Gold%20Zari" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-container">
-                    <div class="badge-heart"><i class="far fa-heart"></i></div>
-                    <img src="assets/product2.jpg.png" alt="Cream Cotton Saree with Leaf Motifs" class="expandable">
-                </div>
-                <div class="product-info">
-                    <p class="product-title">Cream Cotton Saree with Leaf Motifs</p>
-                    <a href="https://wa.me/918985175287?text=I'm%20interested%20in%20buying%20the%20Cream%20Cotton%20Saree%20with%20Leaf%20Motifs" target="_blank" class="whatsapp-action-btn">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="btn-container">
-            <a href="#" class="btn-outline" onclick="alert('Loading more exclusive Best Sellers soon!'); return false;">View All Best Sellers</a>
-        </div>
-        <div class="btn-container">
-            <a href="#" class="btn-outline" onclick="alert('Loading more exclusive Best Sellers soon!'); return false;">View All Best Sellers</a>
+            <a href="#latest-arrivals" class="btn-outline">View More</a>
         </div>
 
         <h2 class="section-header">Featured Style</h2>
-        <div class="instagram-embed-container">
-            <blockquote class="instagram-media" 
-                data-instgrm-permalink="https://www.instagram.com/reel/DQeH1X6k2Ve/?utm_source=ig_embed&amp;utm_campaign=loading" 
-                data-instgrm-version="14" 
-                style="background:#FFF; border:0; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.05); margin: 0 auto; max-width:400px; min-width:326px; padding:0; width:99.375%;">
-            </blockquote>
-            <script async src="//www.instagram.com/embed.js"></script>
-        </div>
-        </main>
+        <div class="instagram-embed-container" id="ig-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+            </div>
     </main>
 
     <footer>
@@ -214,7 +103,7 @@
                 <p>contact@anushalabel.com</p>
                 <div class="social-icons">
                     <i class="fab fa-facebook-f" onclick="alert('Redirecting to Facebook')"></i>
-                    <i class="fab fa-instagram" onclick="alert('Redirecting to Instagram')"></i>
+                    <i class="fab fa-instagram" onclick="window.open('https://www.instagram.com/anushalabel', '_blank')"></i>
                     <i class="fab fa-youtube" onclick="alert('Redirecting to YouTube')"></i>
                     <i class="fab fa-whatsapp" onclick="window.open('https://wa.me/918985175287', '_blank')"></i>
                 </div>
@@ -246,5 +135,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>

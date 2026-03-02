@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | AnushaLabel</title>
+    
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f4f9; margin: 0;">
+    
+    <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 400px;">
+        <img src="assets/logo.png" style="width: 80px; margin-bottom: 20px;" alt="Logo">
+        <h2 style="font-family: 'Playfair Display'; color: var(--brand-brown); margin-bottom: 10px;">Admin Access</h2>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Use <b>admin@anushalabel.com</b> / <b>123456</b></p>
+        
+        <input type="email" id="email" class="admin-input" placeholder="Admin Email" style="margin-bottom: 15px; width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px;" value="admin@anushalabel.com">
+        <input type="password" id="password" class="admin-input" placeholder="Password" style="margin-bottom: 20px; width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px;" value="123456">
+        
+        <button id="login-btn" class="submit-btn" style="background: var(--brand-brown); width: 100%; padding: 12px; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-family: 'Poppins';">Login</button>
+        
+        <p id="error-msg" style="color: red; margin-top: 15px; display: none; font-size: 0.9rem;"></p>
+        
+        <div style="margin-top: 20px;">
+            <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">&larr; Back to Website</a>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnushaLabel | Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header>
+        <div class="header-left"><a href="index.html" style="color: var(--brand-brown); text-decoration: none;"><i class="fas fa-arrow-left"></i> Back</a></div>
+        <a href="index.html" class="logo"><img src="assets/banner.png" alt="AnushaLabel Logo"></a>
+        <div class="header-right"><a href="https://www.instagram.com/anushalabel" target="_blank"><i class="fab fa-instagram"></i></a></div>
+    </header>
+
+    <main class="product-detail-container">
+        <div class="slider-container">
+            <button class="slider-btn prev" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-track" id="slider-track">
+                </div>
+            <button class="slider-btn next" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="product-info-side">
+            <h1 id="p-name">Loading...</h1>
+            <p class="product-meta">Category: <span id="p-type">...</span></p>
+            <p class="product-meta">Color: <span id="p-color">...</span></p>
+            <p class="product-desc" id="p-desc">...</p>
+            <a href="#" id="whatsapp-link" target="_blank" class="whatsapp-action-btn">
+                <i class="fab fa-whatsapp"></i> Order Now on WhatsApp
+            </a>
+        </div>
+    </main>
+
+    <script src="product.js"></script>
+</body>
+</html>
