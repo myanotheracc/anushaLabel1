@@ -76,18 +76,52 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
 .social-icons i { color: #fff; background: var(--brand-brown); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
 .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9rem; }
 
-/* --- Single Product Slider Page --- */
-.product-detail-container { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 40px auto; padding: 0 20px; gap: 40px; }
-.slider-container { flex: 1; min-width: 300px; position: relative; overflow: hidden; border-radius: 12px; }
-.slider-track { display: flex; transition: transform 0.4s ease-in-out; height: 500px; }
-.slider-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 10; }
-.slider-btn.prev { left: 10px; }
-.slider-btn.next { right: 10px; }
-.product-info-side { flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; }
-.product-info-side h1 { font-size: 2.5rem; color: var(--brand-brown); margin-bottom: 10px; }
-.product-meta { font-size: 1.1rem; color: #666; margin-bottom: 20px; }
-
+/* /* --- Enhanced Single Product Page for Mobile --- */
+    .product-detail-container { 
+        flex-direction: column; 
+        margin: 10px auto 30px; 
+        gap: 15px; 
+        padding: 0; /* Remove side padding so images touch the screen edges */
+    }
+    .slider-container {
+        border-radius: 0; /* Remove rounded corners for a full-bleed mobile look */
+    }
+    .slider-track { 
+        height: auto; 
+        aspect-ratio: 4/5; /* Instagram portrait ratio - perfect for clothing */
+    }
+    .slider-btn { 
+        width: 45px; 
+        height: 45px; /* Larger touch targets for thumbs */
+        font-size: 1.3rem; 
+        background: rgba(255,255,255,0.9);
+    }
+    .product-info-side { 
+        padding: 0 20px; /* Add padding back to the text area */
+        text-align: left; 
+    }
+    .product-info-side h1 { 
+        font-size: 1.8rem; 
+        margin-bottom: 5px;
+    }
+    .product-meta { 
+        font-size: 0.95rem; 
+        margin-bottom: 10px;
+    }
+    .product-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 20px;
+    }
+    #whatsapp-link { 
+        width: 100%; 
+        max-width: 100%; /* Make button full width */
+        padding: 15px; /* Make it taller for easy tapping */
+        font-size: 1.05rem;
+        border-radius: 8px; /* Slightly squarer for mobile width */
+        margin-top: 10px;
+    }
 /* --- Admin Styles --- */
 .admin-wrapper { max-width: 800px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
 .admin-tabs { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
