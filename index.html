@@ -4,30 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnushaLabel | Vibrant Ethnic Wear</title>
-    
     <link rel="icon" href="assets/logo.png" type="image/png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-    <div id="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Expanded Image">
-    </div>
-
     <header>
         <div class="header-left" style="position: relative;">
             <i class="fas fa-bars" onclick="toggleAdminMenu(event)" style="cursor: pointer; padding: 10px; font-size: 1.5rem;"></i>
-            
-            <div id="admin-dropdown" style="display: none; position: absolute; top: 50px; left: 10px; background: #fff; border: 1px solid #eee; padding: 10px 0; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); min-width: 160px; z-index: 99999;">
-                <a href="admin-login.html" style="display: block; padding: 12px 20px; color: #4A3023; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">
-                    <i class="fas fa-user-shield" style="margin-right: 8px;"></i> Admin Login
-                </a>
+            <div id="admin-dropdown" class="dropdown-menu">
+                <a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin Login</a>
             </div>
         </div>
         
@@ -61,37 +49,22 @@
         <h2 class="section-header">Shop By Category</h2>
         <div class="categories-row">
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
-                <div class="category-card">
-                    <img src="assets/silk.jpg.png" alt="Pattu">
-                </div>
-                <p>Pattu</p>
+                <div class="category-card"><img src="assets/silk.jpg.png" alt="Pattu"></div><p>Pattu</p>
             </div>
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
-                <div class="category-card">
-                    <img src="assets/cotton.jpg.png" alt="Cotton">
-                </div>
-                <p>Cotton</p>
+                <div class="category-card"><img src="assets/cotton.jpg.png" alt="Cotton"></div><p>Cotton</p>
             </div>
             <div class="category-wrapper" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'})">
-                <div class="category-card">
-                    <img src="assets/fancy.jpg.png" alt="Fancy">
-                </div>
-                <p>Fancy</p>
+                <div class="category-card"><img src="assets/fancy.jpg.png" alt="Fancy"></div><p>Fancy</p>
             </div>
         </div>
 
         <h2 class="section-header" id="latest-arrivals">Latest Arrivals</h2>
         
-        <div class="product-grid" id="products-container">
-            </div>
-
-        <div class="btn-container">
-            <a href="#latest-arrivals" class="btn-outline">View More</a>
-        </div>
+        <div class="product-grid" id="products-container"></div>
 
         <h2 class="section-header">Featured Style</h2>
-        <div class="instagram-embed-container" id="ig-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-            </div>
+        <div id="ig-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center; margin-bottom: 50px;"></div>
     </main>
 
     <footer>
@@ -101,36 +74,19 @@
                 <p>Hyderabad - Telangana 500039</p>
                 <p>6309889433</p>
                 <p>contact@anushalabel.com</p>
-                <div class="social-icons">
-                    <i class="fab fa-facebook-f" onclick="alert('Redirecting to Facebook')"></i>
-                    <i class="fab fa-instagram" onclick="window.open('https://www.instagram.com/anushalabel', '_blank')"></i>
-                    <i class="fab fa-youtube" onclick="alert('Redirecting to YouTube')"></i>
-                    <i class="fab fa-whatsapp" onclick="window.open('https://wa.me/918985175287', '_blank')"></i>
-                </div>
             </div>
             <div class="footer-col">
                 <h4>Categories</h4>
-                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Pattu (Silk)</a>
-                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Cotton</a>
-                <a href="#" onclick="document.getElementById('latest-arrivals').scrollIntoView({behavior: 'smooth'}); return false;">Fancy</a>
-            </div>
-            <div class="footer-col">
-                <h4>Useful Links</h4>
-                <a href="#" onclick="window.scrollTo(0,0); return false;">Home</a>
-                <a href="#" onclick="alert('Please login to view your account.'); return false;">My account</a>
-                <a href="#" onclick="alert('Order Tracking page coming soon!'); return false;">Order Tracking</a>
-                <a href="#" onclick="alert('Please contact us via WhatsApp: 6309889433'); return false;">Contact Us</a>
+                <a href="#">Pattu (Silk)</a>
+                <a href="#">Cotton</a>
+                <a href="#">Fancy</a>
             </div>
             <div class="footer-col">
                 <h4>Help & Policies</h4>
-                <a href="#" onclick="alert('Terms & Conditions loaded.'); return false;">Terms & Conditions</a>
-                <a href="#" onclick="alert('Privacy Policy loaded.'); return false;">Privacy Policy</a>
-                <a href="#" onclick="alert('Shipping Policy: We deliver across India within 5-7 business days.'); return false;">Shipping Policy</a>
-                <a href="#" onclick="alert('Returns & Refunds Policy loaded.'); return false;">Returns & Refunds</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Shipping Policy</a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 AnushaLabel | All Rights Reserved</p>
         </div>
     </footer>
 
