@@ -84,6 +84,7 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
 .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 10; color: var(--brand-brown); }
 .slider-btn.prev { left: 10px; }
 .slider-btn.next { right: 10px; }
+.slider-dots { display: none; } /* Hide dots on desktop unless you want them there too */
 .product-info-side { flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; }
 .product-info-side h1 { font-size: 2.5rem; color: var(--brand-brown); margin-bottom: 10px; }
 .product-meta { font-size: 1.1rem; color: #666; margin-bottom: 10px; }
@@ -122,11 +123,11 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
     .hero-contact { font-size: 0.85rem; }
 
     /* --- ENLARGED HEADER ICONS FOR MOBILE --- */
-    .header-left a { font-size: 1.1rem !important; } /* Make 'Back' text bigger */
+    .header-left a { font-size: 1.1rem !important; }
     .header-left i, .header-right i { 
-        font-size: 1.8rem !important; /* Make Arrow and Instagram icon much bigger */
+        font-size: 1.8rem !important; 
     }
-    .logo img { height: 40px; } /* Keep logo proportional */
+    .logo img { height: 40px; } 
 
     /* --- Swipeable Categories --- */
     .categories-row { 
@@ -154,28 +155,53 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
     /* --- FORCED STACKING FOR SINGLE PRODUCT PAGE --- */
     .product-detail-container { 
         display: flex !important;
-        flex-direction: column !important; /* Force top-to-bottom layout */
+        flex-direction: column !important; 
         flex-wrap: nowrap !important;
         margin: 0 auto 30px !important; 
         gap: 0 !important; 
         padding: 0 !important; 
     }
     
-    /* Image Slider takes full width */
+    /* --- PREMIUM FLOATING IMAGE CARD --- */
     .slider-container {
-        flex: 0 0 100% !important; /* Forces 100% width, no sharing */
-        width: 100% !important;
-        max-width: 100% !important;
-        border-radius: 0 !important; 
+        flex: 0 0 auto !important;
+        width: calc(100% - 30px) !important; /* Leaves 15px breathing room on sides */
+        margin: 15px auto 25px !important; /* Centers it and adds spacing */
+        border-radius: 20px !important; /* Beautiful rounded corners */
+        box-shadow: 0 15px 35px rgba(74, 48, 35, 0.15) !important; /* Soft brown drop shadow */
         position: relative;
         overflow: hidden;
     }
-    .slider-track { display: flex; height: auto; }
+    .slider-track { display: flex; height: auto; transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .slider-track img {
-        width: 100vw !important; 
+        width: 100% !important; 
         flex: 0 0 100% !important; 
-        aspect-ratio: 4/5 !important; 
+        aspect-ratio: 3/4 !important; /* Taller, elegant ratio for clothing */
         object-fit: cover; 
+    }
+    
+    /* Elegant Slider Dots */
+    .slider-dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 15;
+    }
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transition: 0.3s ease;
+    }
+    .slider-dot.active {
+        background: #fff;
+        width: 24px; /* Pill shape for active dot */
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
     .slider-btn { 
@@ -190,10 +216,10 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
 
     /* Text Container takes full width BELOW image */
     .product-info-side { 
-        flex: 0 0 100% !important; /* Forces 100% width, drops below image */
+        flex: 0 0 100% !important; 
         width: 100% !important; 
         max-width: 100% !important;
-        padding: 20px 20px !important; 
+        padding: 0 20px 20px !important; 
         text-align: left; 
     }
     
@@ -216,7 +242,7 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
         width: 100% !important; 
         max-width: 100% !important; 
         padding: 16px !important; 
-        font-size: 1.15rem !important; /* Bigger text on the order button */
+        font-size: 1.15rem !important; 
         border-radius: 8px; 
         margin-top: 10px;
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);

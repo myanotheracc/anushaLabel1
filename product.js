@@ -22,29 +22,55 @@ async function loadProductDetails() {
     document.getElementById('whatsapp-link').href = `https://wa.me/916309889433?text=I'm%20interested%20in%20buying%20${encodeURIComponent(data.name)}`;
 
     const track = document.getElementById('slider-track');
+    const dotsContainer = document.getElementById('slider-dots'); // Targeting the dots container
     const images = data.images && data.images.length > 0 ? data.images : ['assets/logo.png'];
     totalSlides = images.length;
     
-    images.forEach(imgUrl => {
+    images.forEach((imgUrl, index) => {
+        // 1. Create the Image
         const img = document.createElement('img');
         img.src = imgUrl;
         track.appendChild(img);
+
+        // 2. Create the Dot
+        if (dotsContainer) {
+            const dot = document.createElement('div');
+            dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+            dotsContainer.appendChild(dot);
+        }
     });
 
     if(totalSlides <= 1) {
         document.getElementById('prev-btn').style.display = 'none';
         document.getElementById('next-btn').style.display = 'none';
+        if (dotsContainer) dotsContainer.style.display = 'none'; // Hide dots if only 1 image
     }
+}
+
+// NEW FUNCTION: Updates the image position AND the active dot
+function updateSlider() {
+    // Move the image track
+    document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update active dot styling
+    const dots = document.querySelectorAll('.slider-dot');
+    dots.forEach((dot, index) => {
+        if(index === currentSlide) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
 }
 
 document.getElementById('next-btn').addEventListener('click', () => {
     currentSlide = (currentSlide + 1) % totalSlides;
-    document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateSlider(); 
 });
 
 document.getElementById('prev-btn').addEventListener('click', () => {
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateSlider(); 
 });
 
 loadProductDetails();
