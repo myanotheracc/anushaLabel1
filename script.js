@@ -59,7 +59,7 @@ async function fetchProducts() {
                 </div>
                 <div class="product-info">
                     <p class="product-title">${item.name}</p>
-                    <a href="https://wa.me/916309889433?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" 
+                    <a href="https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" 
                        target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();">
                         <i class="fab fa-whatsapp"></i> order now
                     </a>
