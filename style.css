@@ -158,16 +158,19 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
 
     /* --- Enhanced Single Product Page for Mobile --- */
     .product-detail-container { 
-        flex-direction: column; 
-        margin: 0 auto 30px; 
-        gap: 15px; 
-        padding: 0; 
+        display: flex !important;
+        flex-direction: column !important; /* Forces vertical stacking */
+        margin: 0 auto 30px !important; 
+        gap: 15px !important; 
+        padding: 0 !important; 
     }
     
     /* Bulletproof Mobile Slider */
     .slider-container {
-        border-radius: 0; 
-        width: 100%;
+        width: 100% !important; /* Forces image to take full width */
+        min-width: 100% !important;
+        flex: none !important;
+        border-radius: 0 !important; 
         position: relative;
         overflow: hidden;
     }
@@ -176,9 +179,9 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
         height: auto; 
     }
     .slider-track img {
-        width: 100vw; 
-        flex: 0 0 100%; 
-        aspect-ratio: 4/5; 
+        width: 100vw !important; 
+        flex: 0 0 100% !important; 
+        aspect-ratio: 4/5 !important; 
         object-fit: cover; 
     }
     
@@ -205,7 +208,10 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
 
     /* Product Text & Buttons */
     .product-info-side { 
-        padding: 0 20px; 
+        width: 100% !important; /* Forces text container below image */
+        min-width: 100% !important;
+        flex: none !important;
+        padding: 0 20px !important; 
         text-align: left; 
     }
     .product-info-side h1 { 
@@ -223,9 +229,9 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
         margin-bottom: 20px;
     }
     #whatsapp-link { 
-        width: 100%; 
-        max-width: 100%; 
-        padding: 15px; 
+        width: 100% !important; 
+        max-width: 100% !important; 
+        padding: 15px !important; 
         font-size: 1.05rem;
         border-radius: 8px; 
         margin-top: 10px;
