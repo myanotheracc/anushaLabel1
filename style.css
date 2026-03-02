@@ -108,3 +108,84 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
     .product-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 0 5%; }
     .footer-grid { grid-template-columns: repeat(4, 1fr); padding: 0 5%; }
 }
+
+/* =========================================
+   📱 MOBILE OPTIMIZATION (Max-Width 767px)
+   ========================================= */
+@media (max-width: 767px) {
+    
+    /* --- General Typography & Spacing --- */
+    .section-header { font-size: 1.3rem; margin: 30px 15px 20px; }
+    .hero-tagline { font-size: 1.1rem; }
+    .hero-logo-circle { width: 80px; height: 80px; }
+    .hero-contact { font-size: 0.85rem; }
+
+    /* --- Swipeable Categories (App-like feel) --- */
+    .categories-row { 
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        justify-content: flex-start; 
+        padding-bottom: 15px; 
+        scroll-snap-type: x mandatory; /* Snaps to the next item */
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    }
+    .categories-row::-webkit-scrollbar { display: none; } /* Hide scrollbar */
+    .category-wrapper { 
+        flex: 0 0 40%; /* Show 2.5 items to hint at swiping */
+        scroll-snap-align: start; 
+        width: auto; 
+    }
+
+    /* --- Product Grid & Cards --- */
+    .product-grid { 
+        grid-template-columns: repeat(2, 1fr); /* Keep 2 side-by-side */
+        gap: 10px; 
+        padding: 0 10px; 
+    }
+    .image-container img { 
+        height: 180px; /* Prevent images from being too tall on small screens */
+    }
+    .product-title { 
+        font-size: 0.85rem; 
+        margin-bottom: 8px; 
+    }
+    .whatsapp-action-btn { 
+        padding: 8px 10px; 
+        font-size: 0.75rem; 
+    }
+    .badge-heart { width: 30px; height: 30px; font-size: 0.8rem; }
+
+    /* --- Single Product Page --- */
+    .product-detail-container { 
+        flex-direction: column; /* Stack image on top of text */
+        margin: 20px auto; 
+        gap: 20px; 
+        padding: 0 15px;
+    }
+    .slider-track { height: 350px; } /* Shorter slider for mobile */
+    .product-info-side h1 { font-size: 1.8rem; }
+    .product-meta { font-size: 0.95rem; }
+
+    /* --- Admin Dashboard Mobile Fixes --- */
+    .admin-wrapper { 
+        margin: 20px 10px; 
+        padding: 20px 15px; 
+    }
+    .admin-tabs { 
+        flex-direction: row; /* Horizontal tabs */
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding-bottom: 10px; 
+    }
+    .admin-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { 
+        flex: 0 0 auto; 
+        font-size: 0.9rem; 
+        padding: 10px 15px; 
+    }
+    .form-row { 
+        flex-direction: column; /* Stack side-by-side inputs */
+        gap: 15px; 
+    }
+    .image-upload-area { justify-content: center; }
+}
