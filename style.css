@@ -121,7 +121,14 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
     .hero-logo-circle { width: 80px; height: 80px; }
     .hero-contact { font-size: 0.85rem; }
 
-    /* --- Swipeable Categories (App-like feel) --- */
+    /* --- ENLARGED HEADER ICONS FOR MOBILE --- */
+    .header-left a { font-size: 1.1rem !important; } /* Make 'Back' text bigger */
+    .header-left i, .header-right i { 
+        font-size: 1.8rem !important; /* Make Arrow and Instagram icon much bigger */
+    }
+    .logo img { height: 40px; } /* Keep logo proportional */
+
+    /* --- Swipeable Categories --- */
     .categories-row { 
         flex-wrap: nowrap; 
         overflow-x: auto; 
@@ -138,46 +145,32 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
     }
 
     /* --- Product Grid & Cards --- */
-    .product-grid { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px; 
-        padding: 0 10px; 
-    }
-    .image-container img { 
-        height: 180px; 
-    }
-    .product-title { 
-        font-size: 0.85rem; 
-        margin-bottom: 8px; 
-    }
-    .whatsapp-action-btn { 
-        padding: 8px 10px; 
-        font-size: 0.75rem; 
-    }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
+    .image-container img { height: 180px; }
+    .product-title { font-size: 0.85rem; margin-bottom: 8px; }
+    .whatsapp-action-btn { padding: 8px 10px; font-size: 0.75rem; }
     .badge-heart { width: 30px; height: 30px; font-size: 0.8rem; }
 
-    /* --- Enhanced Single Product Page for Mobile --- */
+    /* --- FORCED STACKING FOR SINGLE PRODUCT PAGE --- */
     .product-detail-container { 
         display: flex !important;
-        flex-direction: column !important; /* Forces vertical stacking */
+        flex-direction: column !important; /* Force top-to-bottom layout */
+        flex-wrap: nowrap !important;
         margin: 0 auto 30px !important; 
-        gap: 15px !important; 
+        gap: 0 !important; 
         padding: 0 !important; 
     }
     
-    /* Bulletproof Mobile Slider */
+    /* Image Slider takes full width */
     .slider-container {
-        width: 100% !important; /* Forces image to take full width */
-        min-width: 100% !important;
-        flex: none !important;
+        flex: 0 0 100% !important; /* Forces 100% width, no sharing */
+        width: 100% !important;
+        max-width: 100% !important;
         border-radius: 0 !important; 
         position: relative;
         overflow: hidden;
     }
-    .slider-track { 
-        display: flex;
-        height: auto; 
-    }
+    .slider-track { display: flex; height: auto; }
     .slider-track img {
         width: 100vw !important; 
         flex: 0 0 100% !important; 
@@ -185,79 +178,55 @@ footer { padding: 50px 20px 20px; background: #fff; margin-top: 50px; }
         object-fit: cover; 
     }
     
-    /* Beautiful Floating Buttons */
     .slider-btn { 
-        width: 45px; 
-        height: 45px; 
-        font-size: 1.2rem; 
-        background: rgba(255,255,255,0.9);
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        color: var(--brand-brown);
+        width: 45px; height: 45px; font-size: 1.3rem; 
+        background: rgba(255,255,255,0.9); border-radius: 50%;
+        position: absolute; top: 50%; transform: translateY(-50%);
+        z-index: 10; display: flex; align-items: center; justify-content: center;
+        border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15); color: var(--brand-brown);
     }
     .slider-btn.prev { left: 15px; }
     .slider-btn.next { right: 15px; }
 
-    /* Product Text & Buttons */
+    /* Text Container takes full width BELOW image */
     .product-info-side { 
-        width: 100% !important; /* Forces text container below image */
-        min-width: 100% !important;
-        flex: none !important;
-        padding: 0 20px !important; 
+        flex: 0 0 100% !important; /* Forces 100% width, drops below image */
+        width: 100% !important; 
+        max-width: 100% !important;
+        padding: 20px 20px !important; 
         text-align: left; 
     }
+    
+    /* ENLARGED TEXT FOR MOBILE READABILITY */
     .product-info-side h1 { 
-        font-size: 1.8rem; 
-        margin-bottom: 5px;
+        font-size: 2rem !important; 
+        margin-bottom: 8px;
     }
     .product-meta { 
-        font-size: 0.95rem; 
-        margin-bottom: 10px;
+        font-size: 1.1rem !important; 
+        margin-bottom: 12px;
     }
     .product-desc {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 1.05rem !important;
+        line-height: 1.7 !important;
         color: #444;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
     #whatsapp-link { 
         width: 100% !important; 
         max-width: 100% !important; 
-        padding: 15px !important; 
-        font-size: 1.05rem;
+        padding: 16px !important; 
+        font-size: 1.15rem !important; /* Bigger text on the order button */
         border-radius: 8px; 
         margin-top: 10px;
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
 
     /* --- Admin Dashboard Mobile Fixes --- */
-    .admin-wrapper { 
-        margin: 20px 10px; 
-        padding: 20px 15px; 
-    }
-    .admin-tabs { 
-        flex-direction: row; 
-        overflow-x: auto; 
-        white-space: nowrap; 
-        padding-bottom: 10px; 
-    }
+    .admin-wrapper { margin: 20px 10px; padding: 20px 15px; }
+    .admin-tabs { flex-direction: row; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
     .admin-tabs::-webkit-scrollbar { display: none; }
-    .tab-btn { 
-        flex: 0 0 auto; 
-        font-size: 0.9rem; 
-        padding: 10px 15px; 
-    }
-    .form-row { 
-        flex-direction: column; 
-        gap: 15px; 
-    }
+    .tab-btn { flex: 0 0 auto; font-size: 0.9rem; padding: 10px 15px; }
+    .form-row { flex-direction: column; gap: 15px; }
     .image-upload-area { justify-content: center; }
 }
