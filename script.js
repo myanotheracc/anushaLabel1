@@ -53,6 +53,12 @@ async function fetchProducts() {
             
             const isSoldOut = item.status === 'Sold Out';
             const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
+            
+            // This places the status bar ON the photo
+            const statusBarHTML = isSoldOut
+                ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
+                : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
+
             const actionBtnHTML = isSoldOut 
                 ? `<button class="whatsapp-action-btn btn-disabled" onclick="event.stopPropagation();">Sold Out</button>`
                 : `<a href="https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
@@ -62,7 +68,7 @@ async function fetchProducts() {
                     ${badgeHTML}
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
                     <img src="${coverImg}" alt="${item.name}">
-                </div>
+                    ${statusBarHTML} </div>
                 <div class="product-info">
                     <p class="product-title">${item.name}</p>
                     ${actionBtnHTML}
