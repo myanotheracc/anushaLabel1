@@ -57,8 +57,9 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); background: #fff; }
 .image-container { position: relative; overflow: hidden; }
 .image-container img { width: 100%; height: 280px; object-fit: cover; display: block; transition: 0.6s ease; }
-.product-card:hover .image-container img { transform: scale(1.08); }
 .badge-new { position: absolute; top: 10px; left: 10px; background-color: #D81B60; color: white; font-size: 0.7rem; padding: 5px 10px; border-radius: 20px; z-index: 2; }
+.badge-sold-out { position: absolute; top: 10px; left: 10px; background-color: #333; color: white; font-size: 0.7rem; padding: 5px 10px; border-radius: 20px; z-index: 2; font-weight: bold; }
+.btn-disabled { background-color: #999 !important; pointer-events: none; cursor: not-allowed; }
 .badge-heart { position: absolute; top: 10px; right: 10px; background: rgba(255, 255, 255, 0.9); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #999; cursor: pointer; z-index: 2; transition: 0.2s ease; }
 .badge-heart:hover { transform: scale(1.15); color: var(--accent-pink); background: #fff; }
 .product-info { padding: 15px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; flex-grow: 1; }

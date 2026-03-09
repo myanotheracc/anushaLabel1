@@ -18,8 +18,25 @@ async function loadProductDetails() {
     document.getElementById('p-name').innerText = data.name;
     document.getElementById('p-type').innerText = data.type;
     document.getElementById('p-color').innerText = data.color || 'N/A';
-   document.getElementById('p-desc').innerHTML = (data.description || '').replace(/\n/g, '<br>');
-    document.getElementById('whatsapp-link').href = `https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(data.name)}`;
+    
+    // Status Logic
+    const statusEl = document.getElementById('p-status');
+    statusEl.innerText = data.status || 'In Stock';
+    if(data.status === 'Sold Out') {
+        statusEl.style.color = 'red';
+        const waBtn = document.getElementById('whatsapp-link');
+        waBtn.innerText = "Sold Out";
+        waBtn.style.backgroundColor = "#999";
+        waBtn.style.pointerEvents = "none";
+        waBtn.removeAttribute('href');
+        waBtn.classList.remove('whatsapp-action-btn');
+        waBtn.classList.add('whatsapp-action-btn', 'btn-disabled');
+    } else {
+        statusEl.style.color = '#25D366'; // Green for In Stock
+        document.getElementById('whatsapp-link').href = `https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(data.name)}`;
+    }
+
+    document.getElementById('p-desc').innerHTML = (data.description || '').replace(/\n/g, '<br>');
 
     const track = document.getElementById('slider-track');
     const dotsContainer = document.getElementById('slider-dots'); // Targeting the dots container

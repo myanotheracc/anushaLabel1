@@ -51,18 +51,21 @@ async function fetchProducts() {
             card.style.cursor = 'pointer';
             card.onclick = () => window.location.href = `product.html?id=${item.id}`;
             
+            const isSoldOut = item.status === 'Sold Out';
+            const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
+            const actionBtnHTML = isSoldOut 
+                ? `<button class="whatsapp-action-btn btn-disabled" onclick="event.stopPropagation();">Sold Out</button>`
+                : `<a href="https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
+
             card.innerHTML = `
                 <div class="image-container">
-                    <span class="badge-new">NEW</span>
+                    ${badgeHTML}
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
                     <img src="${coverImg}" alt="${item.name}">
                 </div>
                 <div class="product-info">
                     <p class="product-title">${item.name}</p>
-                    <a href="https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" 
-                       target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();">
-                        <i class="fab fa-whatsapp"></i> order now
-                    </a>
+                    ${actionBtnHTML}
                 </div>
             `;
             container.appendChild(card);

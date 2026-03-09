@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveBtn.addEventListener('click', async () => {
                 const id = document.getElementById('edit-id').value;
                 const type = document.getElementById('saree-type').value;
+                const status = document.getElementById('saree-status').value;
                 const name = document.getElementById('saree-name').value;
                 const color = document.getElementById('saree-color').value;
                 const desc = document.getElementById('saree-desc').value;
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(!type || !name) return alert('Type and Name required!');
 
                 saveBtn.innerText = "Saving...";
-                const payload = { type, name, color, description: desc, images: uploadedImages };
+                const payload = { type, status, name, color, description: desc, images: uploadedImages };
                 
                 try {
                     let result;
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function resetForm() {
             document.getElementById('edit-id').value = '';
             document.getElementById('saree-type').value = '';
+            document.getElementById('saree-status').value = 'In Stock';
             document.getElementById('saree-name').value = '';
             document.getElementById('saree-color').value = '';
             document.getElementById('saree-desc').value = '';
@@ -155,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px;">
                                 <div style="display: flex; align-items: center; gap: 15px;">
                                     <img src="${img}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"> 
-                                    <span style="font-weight: 500;">${item.name}</span>
+                                    <span style="font-weight: 500;">${item.name} ${item.status === 'Sold Out' ? '(Sold Out)' : ''}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-edit" style="color: #3498db; cursor: pointer; margin-right: 15px;" onclick='editProduct(${JSON.stringify(item)})'></i>
@@ -170,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.editProduct = (item) => {
             document.getElementById('edit-id').value = item.id;
             document.getElementById('saree-type').value = item.type;
+            document.getElementById('saree-status').value = item.status || 'In Stock';
             document.getElementById('saree-name').value = item.name;
             document.getElementById('saree-color').value = item.color || '';
             document.getElementById('saree-desc').value = item.description || '';
