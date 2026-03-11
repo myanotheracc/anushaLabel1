@@ -39,17 +39,22 @@ async function loadProductDetails() {
     document.getElementById('p-desc').innerHTML = (data.description || '').replace(/\n/g, '<br>');
 
     const track = document.getElementById('slider-track');
-    const dotsContainer = document.getElementById('slider-dots'); // Targeting the dots container
+    const dotsContainer = document.getElementById('slider-dots'); 
     const images = data.images && data.images.length > 0 ? data.images : ['assets/logo.png'];
     totalSlides = images.length;
     
     images.forEach((imgUrl, index) => {
-        // 1. Create the Image
         const img = document.createElement('img');
         img.src = imgUrl;
+        
+        // OPEN FULLSCREEN ON CLICK
+        img.addEventListener('click', () => {
+            document.getElementById('slider-container').classList.add('fullscreen-active');
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        });
+        
         track.appendChild(img);
 
-        // 2. Create the Dot
         if (dotsContainer) {
             const dot = document.createElement('div');
             dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
@@ -60,16 +65,12 @@ async function loadProductDetails() {
     if(totalSlides <= 1) {
         document.getElementById('prev-btn').style.display = 'none';
         document.getElementById('next-btn').style.display = 'none';
-        if (dotsContainer) dotsContainer.style.display = 'none'; // Hide dots if only 1 image
+        if (dotsContainer) dotsContainer.style.display = 'none'; 
     }
 }
 
-// NEW FUNCTION: Updates the image position AND the active dot
 function updateSlider() {
-    // Move the image track
     document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    // Update active dot styling
     const dots = document.querySelectorAll('.slider-dot');
     dots.forEach((dot, index) => {
         if(index === currentSlide) {
@@ -89,5 +90,48 @@ document.getElementById('prev-btn').addEventListener('click', () => {
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
     updateSlider(); 
 });
+
+// CLOSE FULLSCREEN ON CLICK
+document.getElementById('close-fs-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('slider-container').classList.remove('fullscreen-active');
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+
+// TOUCH SWIPING LOGIC FOR MOBILE 
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const sliderContainer = document.getElementById('slider-container');
+
+sliderContainer.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, {passive: true});
+
+sliderContainer.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, {passive: true});
+
+function handleSwipe() {
+    const xDiff = touchStartX - touchEndX;
+    const yDiff = touchStartY - touchEndY;
+    
+    // Check if the user is swiping horizontally (not scrolling up/down)
+    if (Math.abs(xDiff) > Math.abs(yDiff) && totalSlides > 1) {
+        if (xDiff > 40) {
+            // Swiped left -> Next image
+            document.getElementById('next-btn').click();
+        } else if (xDiff < -40) {
+            // Swiped right -> Previous image
+            document.getElementById('prev-btn').click();
+        }
+    }
+}
 
 loadProductDetails();
