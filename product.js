@@ -19,6 +19,17 @@ async function loadProductDetails() {
     document.getElementById('p-type').innerText = data.type;
     document.getElementById('p-color').innerText = data.color || 'N/A';
     
+    const coverImg = (data.images && data.images.length > 0) ? data.images[0] : 'assets/logo.png';
+    
+    // The raw coverImg link at the bottom triggers WhatsApp's automatic photo preview
+    const waMessage = `Hi AnushaLabel, I'm interested in this product:
+*Name:* ${data.name}
+*Category:* ${data.type}
+*Color:* ${data.color || 'N/A'}
+*Product Page:* ${window.location.href}
+
+${coverImg}`;
+
     // Status Logic
     const statusEl = document.getElementById('p-status');
     statusEl.innerText = data.status || 'In Stock';
@@ -33,7 +44,7 @@ async function loadProductDetails() {
         waBtn.classList.add('whatsapp-action-btn', 'btn-disabled');
     } else {
         statusEl.style.color = '#25D366'; // Green for In Stock
-        document.getElementById('whatsapp-link').href = `https://wa.me/917286931958?text=I'm%20interested%20in%20buying%20${encodeURIComponent(data.name)}`;
+        document.getElementById('whatsapp-link').href = `https://wa.me/917286931958?text=${encodeURIComponent(waMessage)}`;
     }
 
     document.getElementById('p-desc').innerHTML = (data.description || '').replace(/\n/g, '<br>');
@@ -122,13 +133,10 @@ function handleSwipe() {
     const xDiff = touchStartX - touchEndX;
     const yDiff = touchStartY - touchEndY;
     
-    // Check if the user is swiping horizontally (not scrolling up/down)
     if (Math.abs(xDiff) > Math.abs(yDiff) && totalSlides > 1) {
         if (xDiff > 40) {
-            // Swiped left -> Next image
             document.getElementById('next-btn').click();
         } else if (xDiff < -40) {
-            // Swiped right -> Previous image
             document.getElementById('prev-btn').click();
         }
     }

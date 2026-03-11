@@ -8,11 +8,10 @@ const categoryType = urlParams.get('type');
 
 document.addEventListener('DOMContentLoaded', () => {
     if(!categoryType) {
-        window.location.href = 'index.html'; // Send them back if no category exists
+        window.location.href = 'index.html'; 
         return;
     }
     
-    // Set the Page Title dynamically
     document.getElementById('category-title').innerText = categoryType + " Collection";
     document.title = categoryType + " | AnushaLabel";
     
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchCategoryProducts() {
     try {
-        // Here we use .eq('type', categoryType) to FILTER the database!
         const { data, error } = await supabaseClient
             .from('products')
             .select('*')
@@ -46,21 +44,32 @@ async function fetchCategoryProducts() {
             const isSoldOut = item.status === 'Sold Out';
             const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
             
-            // This places the status bar ON the photo
             const statusBarHTML = isSoldOut
                 ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
                 : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
 
+            const productUrl = `${window.location.origin}/product.html?id=${item.id}`;
+            
+            // The raw coverImg link at the bottom triggers WhatsApp's automatic photo preview
+            const waMessage = `Hi AnushaLabel, I'm interested in this product:
+*Name:* ${item.name}
+*Category:* ${item.type}
+*Color:* ${item.color || 'N/A'}
+*Product Page:* ${productUrl}
+
+${coverImg}`;
+
             const actionBtnHTML = isSoldOut 
                 ? `<button class="whatsapp-action-btn btn-disabled" onclick="event.stopPropagation();">Sold Out</button>`
-                : `<a href="https://wa.me/916309889433?text=I'm%20interested%20in%20buying%20${encodeURIComponent(item.name)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
+                : `<a href="https://wa.me/916309889433?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
 
             card.innerHTML = `
                 <div class="image-container">
                     ${badgeHTML}
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
                     <img src="${coverImg}" alt="${item.name}">
-                    ${statusBarHTML} </div>
+                    ${statusBarHTML} 
+                </div>
                 <div class="product-info">
                     <p class="product-title">${item.name}</p>
                     ${actionBtnHTML}
