@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // --- NEW: PRESS ENTER TO LOG IN ---
+        // PRESS ENTER TO LOG IN
         const handleLoginEnter = (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -137,6 +137,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch(e) { alert('Network timeout saving to Supabase.'); }
                 saveBtn.innerText = "Save Product";
             });
+
+            // --- NEW: PRESS ENTER TO SAVE PRODUCT ---
+            const handleSaveEnter = (e) => {
+                if (e.target.id === 'saree-desc') {
+                    // In the description box: Enter = Save. Shift+Enter = New Line.
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault(); 
+                        saveBtn.click();
+                    }
+                } else {
+                    // In all other text boxes: Enter = Save.
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        saveBtn.click();
+                    }
+                }
+            };
+            
+            document.getElementById('saree-name').addEventListener('keydown', handleSaveEnter);
+            document.getElementById('saree-color').addEventListener('keydown', handleSaveEnter);
+            document.getElementById('saree-desc').addEventListener('keydown', handleSaveEnter);
         }
 
         function resetForm() {
@@ -214,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 postIgBtn.innerText = "Post";
             });
 
-            // --- NEW: PRESS ENTER TO POST IG LINK ---
+            // PRESS ENTER TO POST IG LINK 
             const handleIGEnter = (e) => {
                 if(e.key === 'Enter') {
                     e.preventDefault();
