@@ -37,6 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginBtn.innerText = "Login";
             }
         });
+
+        // --- NEW: PRESS ENTER TO LOG IN ---
+        const handleLoginEnter = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                loginBtn.click();
+            }
+        };
+        document.getElementById('email').addEventListener('keydown', handleLoginEnter);
+        document.getElementById('password').addEventListener('keydown', handleLoginEnter);
     }
 
     // 2. DASHBOARD
@@ -203,6 +213,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 else { alert('Posted!'); document.getElementById('ig-link').value = ''; loadIGList(); }
                 postIgBtn.innerText = "Post";
             });
+
+            // --- NEW: PRESS ENTER TO POST IG LINK ---
+            const handleIGEnter = (e) => {
+                if(e.key === 'Enter') {
+                    e.preventDefault();
+                    postIgBtn.click();
+                }
+            };
+            document.getElementById('ig-desc').addEventListener('keydown', handleIGEnter);
+            document.getElementById('ig-link').addEventListener('keydown', handleIGEnter);
         }
 
         const toggleIgListBtn = document.getElementById('toggle-ig-list-btn');
