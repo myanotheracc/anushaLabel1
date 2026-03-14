@@ -44,10 +44,6 @@ async function fetchCategoryProducts() {
             const isSoldOut = item.status === 'Sold Out';
             const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
             
-            const statusBarHTML = isSoldOut
-                ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
-                : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
-
             const productUrl = `${window.location.origin}/product.html?id=${item.id}`;
             
             // The raw coverImg link at the bottom triggers WhatsApp's automatic photo preview
@@ -59,6 +55,7 @@ async function fetchCategoryProducts() {
 
 ${coverImg}`;
 
+            // If sold out, show the disabled Sold Out button instead of the Order button
             const actionBtnHTML = isSoldOut 
                 ? `<button class="whatsapp-action-btn btn-disabled" onclick="event.stopPropagation();">Sold Out</button>`
                 : `<a href="https://wa.me/916309889433?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
@@ -68,7 +65,6 @@ ${coverImg}`;
                     ${badgeHTML}
                     <div class="badge-heart"><i class="far fa-heart"></i></div>
                     <img src="${coverImg}" alt="${item.name}">
-                    ${statusBarHTML} 
                 </div>
                 <div class="product-info">
                     <p class="product-title">${item.name}</p>
