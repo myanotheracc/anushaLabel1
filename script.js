@@ -51,12 +51,14 @@ async function fetchProducts() {
             card.style.cursor = 'pointer';
             card.onclick = () => window.location.href = `product.html?id=${item.id}`;
             
-            const isSoldOut = item.status === 'Sold Out';
-            const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
+
+                                //MADE CHANGES HERE            
+            // const isSoldOut = item.status === 'Sold Out';
+            // const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
             
-            const statusBarHTML = isSoldOut
-                ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
-                : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
+            // const statusBarHTML = isSoldOut
+            //     ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
+            //     : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
 
             const productUrl = `${window.location.origin}/product.html?id=${item.id}`;
             
