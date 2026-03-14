@@ -56,9 +56,9 @@ async function fetchProducts() {
              const isSoldOut = item.status === 'Sold Out';
              const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
             
-            // const statusBarHTML = isSoldOut
-            //     ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
-            //     : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
+             const statusBarHTML = isSoldOut
+                ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
+                 : `<div class="image-status-bar status-bar-in-stock">In Stock</div>`;
 
             const productUrl = `${window.location.origin}/product.html?id=${item.id}`;
             
