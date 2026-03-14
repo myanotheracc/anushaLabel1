@@ -53,8 +53,8 @@ async function fetchProducts() {
             
 
                                 //MADE CHANGES HERE            
-             const isSoldOut = item.status === 'Sold Out';
-             const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
+            //  const isSoldOut = item.status === 'Sold Out';
+            //  const badgeHTML = isSoldOut ? `<span class="badge-sold-out">SOLD OUT</span>` : `<span class="badge-new">NEW</span>`;
             
              const statusBarHTML = isSoldOut
                 ? `<div class="image-status-bar status-bar-sold-out">Sold Out</div>`
