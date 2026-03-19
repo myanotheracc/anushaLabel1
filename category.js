@@ -58,7 +58,7 @@ ${coverImg}`;
             // If sold out, show the disabled Sold Out button instead of the Order button
             const actionBtnHTML = isSoldOut 
                 ? `<button class="whatsapp-action-btn btn-disabled" onclick="event.stopPropagation();">Sold Out</button>`
-                : `<a href="https://wa.me/916309889433?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
+                : `<a href="https://wa.me/917286931958?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-action-btn" onclick="event.stopPropagation();"><i class="fab fa-whatsapp"></i> Order</a>`;
 
             card.innerHTML = `
                 <div class="image-container">
